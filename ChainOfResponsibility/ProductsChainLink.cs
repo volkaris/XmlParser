@@ -22,6 +22,6 @@ public class ProductsChainLink : ChainLinkBase
                 return unsuccess;
         }
 
-        return new OperationExecutionResult.Success();
+        return _next is not null ? _next.ProcessOrder(orderDto) : new OperationExecutionResult.Success();
     }
 }

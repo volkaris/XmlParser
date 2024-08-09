@@ -1,8 +1,9 @@
-using System.Xml.Serialization;
 using Microsoft.EntityFrameworkCore;
+
 using XmlParser.ChainOfResponsibility;
 using XmlParser.DbContexts;
-using XmlParser.Entities;
+using XmlParser.OperationResults;
+using XmlParser.Parsers;
 using XmlParser.Repositories.Order;
 using XmlParser.Repositories.OrderItems;
 using XmlParser.Repositories.Product;
@@ -11,25 +12,6 @@ using XmlParser.Services.Order;
 using XmlParser.Services.OrderItems;
 using XmlParser.Services.Product;
 using XmlParser.Services.User;
-
-/*
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
-*/
-
-/*
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.MapGet("/", () => "Hello World!");
-
-app.Run();
-*/
-
 
 namespace XmlParser;
 
@@ -61,13 +43,11 @@ internal class Program
             opt => opt.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         var serviceProvider = serviceCollection.BuildServiceProvider();
-
-        var orderSerializer = new XmlSerializer(typeof(OrderDto));
-
-
-        var reader = new StreamReader("C:\\Users\\Ilya\\RiderProjects\\XmlParser\\XmlParser\\example.xml");
-        var order = (OrderDto)orderSerializer.Deserialize(reader);
-
+        
+        var parser = new Parser("C:\\Users\\Ilya\\RiderProjects\\XmlParser\\XmlParser\\example.xml");
+        
+        var order = parser.OrderDto;
+        
         var orderService = serviceProvider.GetRequiredService<IOrderService>();
         var userService = serviceProvider.GetRequiredService<IUserService>();
         var orderItemsService = serviceProvider.GetRequiredService<IOrderItemsService>();
@@ -78,15 +58,13 @@ internal class Program
         var userChainLink = new UsersChainLink(userService);
         var orderChainLink = new OrderChainLink(orderService);
 
-        productChainLink.AddNext(orderItemChainLink).AddNext(userChainLink).AddNext(orderChainLink);
+        productChainLink.AddNext(userChainLink).AddNext(orderChainLink).AddNext(orderItemChainLink);
 
+        var parsingResult = productChainLink.ProcessOrder(order);
 
-        
-        /*foreach (var product in order.Products) productService.AddProduct(product);
-
-
-        orderItemsService.AddOrderItem(order);
-        userService.AddUser(order.User);
-        orderService.AddOrder(order);*/
+        if (parsingResult is OperationExecutionResult.Unsuccess unsuccess)
+        {
+            Console.WriteLine(unsuccess.FailReason);
+        }
     }
 }

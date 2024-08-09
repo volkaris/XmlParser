@@ -15,6 +15,9 @@ public class UsersChainLink : ChainLinkBase
 
     public override OperationExecutionResult ProcessOrder(OrderDto orderDto)
     {
-        return _userService.AddUser(orderDto.User);
+        var result = _userService.AddUser(orderDto.User);
+        if (result is OperationExecutionResult.Unsuccess unsuccess)
+            return unsuccess;
+        return _next is not null ? _next.ProcessOrder(orderDto) : new OperationExecutionResult.Success();
     }
 }
