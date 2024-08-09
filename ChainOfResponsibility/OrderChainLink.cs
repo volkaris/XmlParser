@@ -2,7 +2,7 @@ using XmlParser.Entities;
 using XmlParser.OperationResults;
 using XmlParser.Services.Order;
 
-namespace XmlParser.ParsingChain;
+namespace XmlParser.ChainOfResponsibility;
 
 public class OrderChainLink : ChainLinkBase
 {

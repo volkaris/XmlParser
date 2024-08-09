@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace XmlParser.Entities;
@@ -8,9 +9,9 @@ public class Product
     public Product(int quantity, string name, double price)
     {
         Id = new Guid();
-        this.quantity = quantity;
-        this.name = name;
-        this.price = price;
+        this.Quantity = quantity;
+        this.Name = name;
+        this.Price = price;
     }
 
     public Product()
@@ -20,18 +21,22 @@ public class Product
     
     [XmlIgnore]
     [Key]
+    [Column("id")]
     public Guid Id { get; private set; }
 
     [XmlElement("quantity")] 
     [Required]
-    public int quantity { get; set; }
+    [Column("quantity")]
+    public int Quantity { get; set; }
 
     
     [XmlElement("name")]
     [Required]
-    public string name { get; set; }
+    [Column("name")]
+    public string Name { get; set; }
 
     [XmlElement("price")] 
     [Required]
-    public double price { get; set; }
+    [Column("price")]
+    public double Price { get; set; }
 }

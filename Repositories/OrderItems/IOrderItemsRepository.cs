@@ -1,6 +1,9 @@
+using XmlParser.Entities;
+using XmlParser.OperationResults;
+
 namespace XmlParser.Repositories.OrderItems;
 
-public interface IOrderItemsRepository
+public interface IOrderItemRepository
 {
-    
+    public OperationExecutionResult SaveOrderItem(OrderItem orderItem);
 }

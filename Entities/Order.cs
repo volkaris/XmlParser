@@ -6,9 +6,9 @@ namespace XmlParser.Entities;
 
 public class Order
 {
-    public Order(Guid userId)
+    private Order()
     {
-        UserId = userId;
+        
     }
 
     public Order(int no, string regDate, double sum, Guid userId)
