@@ -30,3 +30,8 @@ C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\obj\Debug\net7.0\XmlParser.cspro
 C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Npgsql.dll
 C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Ilya\RiderProjects\XmlParser\XmlParser\bin\Debug\net7.0\System.CodeDom.dll
