@@ -12,7 +12,7 @@ using XmlParser.DbContexts;
 namespace XmlParser.Migrations
 {
     [DbContext(typeof(OrdersDbContext))]
-    [Migration("20240810125131_initialSetup")]
+    [Migration("20240810132116_initialSetup")]
     partial class initialSetup
     {
         /// <inheritdoc />
